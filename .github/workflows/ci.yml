@@ -1,11 +1,19 @@
 # Source: GitHub starter workflow "Simple workflow" (MIT) — https://github.com/actions/starter-workflows/blob/main/ci/blank.yml
+#
+# Repaired by repocurator (feature 002):
+#   - `push` and `pull_request` triggered on `main`; this repository's default
+#     branch is `master`, so the workflow had never run on a push to it.
+#   - the test job ran the starter's placeholder echo. This repository has no
+#     build manifest and no test framework, so the test job now compiles every
+#     `.java` file under `src/` with `javac` and runs a real smoke test
+#     (`src/HelloPackage/SmokeTest.java`) against the compiled output.
 name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
   workflow_dispatch:
 
 # The workflow token is read-only by default.
@@ -52,7 +60,13 @@ jobs:
         with:
           persist-credentials: false
 
-      # Replace the step below with your project's test command. Pin any setup
-      # action you add to a full commit SHA, like the checkout step above.
-      - name: Run tests
-        run: echo "No tests yet. Replace this step with your project's test command."
+      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Build
+        run: javac -d out $(find src -name "*.java")
+
+      - name: Test
+        run: java -cp out HelloPackage.SmokeTest

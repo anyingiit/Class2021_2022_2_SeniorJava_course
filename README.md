@@ -1,9 +1,11 @@
 <!-- Source: Best-README-Template BLANK_README (Unlicense) — https://github.com/othneildrew/Best-README-Template -->
 <a id="readme-top"></a>
 
-# Class2021 2022 2 SeniorJava Course
+# Class2021_2022_2_SeniorJava_course
 
-Class2021 2022 2 senior java course: no README or manifest to go on; based on its name, built with Java, this looks like a learning exercise — open the repository to confirm.
+A personal collection of Java exercises from a 2021-2022 second-semester senior Java class, organized by session date and covering console programs, recursion, exception handling, and Swing desktop GUIs.
+
+**English** · [简体中文](README.zh-CN.md)
 
 [![CI](https://github.com/anyingiit/Class2021_2022_2_SeniorJava_course/actions/workflows/ci.yml/badge.svg)](https://github.com/anyingiit/Class2021_2022_2_SeniorJava_course/actions/workflows/ci.yml)
 [![License](https://img.shields.io/github/license/anyingiit/Class2021_2022_2_SeniorJava_course)](LICENSE)
@@ -24,7 +26,7 @@ Class2021 2022 2 senior java course: no README or manifest to go on; based on it
 
 ## About The Project
 
-Class2021 2022 2 senior java course: no README or manifest to go on; based on its name, built with Java, this looks like a learning exercise — open the repository to confirm.
+This repository holds the exercises assigned week by week in a second-semester senior Java course, starting from a bare `HelloPackage/HelloWorld.java` and moving through loops and recursion (`JWork_22_3_18/Work6.java`'s factorial, `JWork_22_3_25/Work1.java`'s prime-number sieve), exception handling (`JWork_22_6_1/Work4.java`), and small Swing desktop programs with layouts, forms, and keyboard/mouse listeners (`JWork_22_6_11/Work1.java`, `JWork_22_6_12/Work5.java`). Each dated folder under `src/` (`JWork_22_3_5` through `JWork_22_6_12`) also carries the corresponding assignment's own Markdown write-up and any screenshots it produced, so the write-up and the code that answers it sit side by side.
 
 See the [open issues](https://github.com/anyingiit/Class2021_2022_2_SeniorJava_course/issues) for planned features and known issues.
 
@@ -32,20 +34,28 @@ See the [open issues](https://github.com/anyingiit/Class2021_2022_2_SeniorJava_c
 
 ### Prerequisites
 
-- Git
+- A Java Development Kit (JDK) able to compile and run desktop Swing applications — none of the exercises use language features newer than that, so any actively supported JDK works.
+- No build tool or dependency manager: the repository ships plain `.java` sources under `src/` and no `pom.xml`, `build.gradle`, or similar manifest.
 
 ### Installation
+
+Clone the repository, then compile every exercise into one output directory with `javac` — there is no build manifest to run instead:
 
 ```sh
 git clone https://github.com/anyingiit/Class2021_2022_2_SeniorJava_course.git
 cd Class2021_2022_2_SeniorJava_course
+javac -d out $(find src -name "*.java")
 ```
 
 ## Usage
 
+Run any single exercise by pointing `java` at its compiled, fully qualified class name — for example, the "Hello World" exercise:
+
 ```sh
-Class2021_2022_2_SeniorJava_course --help
+java -cp out HelloPackage.HelloWorld
 ```
+
+Swap in any other package and class name (for example `JWork_22_6_12.Work5`) to run a different exercise; the Swing-based ones need a display to open their window.
 
 ## Contributing
 
